@@ -5,7 +5,7 @@ import i18n from './bootstrap/i18n'
 import router from './bootstrap/router'
 import store from './core/store'
 import globalMixin from './includes/mixins/globalMixin'
-import BootstrapVue from "bootstrap-vue"
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 
 import './bootstrap/auth'
 import './bootstrap/moment'
@@ -24,6 +24,7 @@ try {
 
 Vue.use(ElementUI, {i18n: (key, value) => i18n.t(key, value)})
 Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 
 Vue.prototype.config = window.config
 

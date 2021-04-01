@@ -36,6 +36,10 @@
                                 </div>
                             </div>
 
+                            <div class="my-3">
+                                <b-skeleton type="input"></b-skeleton>
+                            </div>
+
                             <b-skeleton width="20%" height="30px" no-aspect></b-skeleton>
 
                             <b-skeleton width="20%" height="20px" no-aspect></b-skeleton>
@@ -189,6 +193,19 @@
                                         <b-img-lazy :src="map.practice_preview" v-b-tooltip.hover="'Карта для тренировок'">
                                         </b-img-lazy>
                                     </b-link>
+                                </div>
+
+                                <div class="my-3">
+                                    <b-input-group>
+                                        <b-input v-model="search" placeholder="Введите текст"></b-input>
+
+                                        <b-input-group-append>
+                                            <b-button variant="outline-primary" @click="applySearch">Найти</b-button>
+                                            <b-button variant="outline-secondary" @click="resetFilter">
+                                                <b-icon-x></b-icon-x>
+                                            </b-button>
+                                        </b-input-group-append>
+                                    </b-input-group>
                                 </div>
 
                                 <template v-if="grenades.hes.length || grenades.smokes.length || grenades.flashes.length || grenades.molotoves.length">
@@ -570,7 +587,8 @@ export default {
         wallbangs: [],
         tip: null,
         map: null,
-        currentExpanded: null
+        currentExpanded: null,
+        search: ''
     }),
     methods: {
         embedUrl: function (url) {
@@ -595,6 +613,44 @@ export default {
             this.currentExpanded = null
 
             document.getElementById(name).classList.add('advantages')
+        },
+        applySearch: function () {
+            let that = this,
+                canonical = this.$route.params.canonical,
+                name = this.search
+
+            axios.get('/map', {
+                params: {
+                    canonical: canonical,
+                    name: name
+                }
+            }).then(function (response) {
+                that.map = response.data.map
+
+                that.grenades = response.data.grenades
+                that.boosts = response.data.boosts
+                that.tricks = response.data.tricks
+                that.wallbangs = response.data.wallbangs
+            })
+        },
+        resetFilter: function () {
+            this.search = ''
+
+            let that = this,
+                canonical = this.$route.params.canonical
+
+            axios.get('/map', {
+                params: {
+                    canonical: canonical
+                }
+            }).then(function (response) {
+                that.map = response.data.map
+
+                that.grenades = response.data.grenades
+                that.boosts = response.data.boosts
+                that.tricks = response.data.tricks
+                that.wallbangs = response.data.wallbangs
+            })
         }
     },
     mounted() {

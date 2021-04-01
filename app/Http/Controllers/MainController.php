@@ -13,7 +13,6 @@ use App\Models\Visit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class MainController extends Controller
 {
@@ -82,6 +81,9 @@ class MainController extends Controller
         if ($map) {
             $advantages = Advantage::query()
                 ->where('map_id', $map->id)
+                ->when($request->filled('name'), function ($query) use ($request) {
+                    $query->where('name', 'like', '%' . $request->get('name') . '%');
+                })
                 ->get();
 
             /** @var Advantage $advantage */
