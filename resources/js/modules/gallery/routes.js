@@ -7,12 +7,12 @@ const page = path => () => import(/* webpackChunkName: '' */ `./components/${pat
 
 export const routes = [
     {
-        path: '/galleries',
+        path: '/admin/galleries',
         name: 'Galleries',
         component: page('GalleryList'),
     },
     {
-        path: '/galleries/:id',
+        path: '/admin/galleries/:id',
         name: 'Show Gallery',
         component: page('GalleryView'),
         hidden: true

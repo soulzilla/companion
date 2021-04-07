@@ -4,6 +4,10 @@ import Welcome      from "./components/Welcome";
 import Home         from "./components/Home";
 import auth         from '../modules/auth/routes_auth';
 import Map from "./components/Map";
+import Interviews from "./components/Interviews";
+import Interview from "./components/Interview";
+import Commands from "./components/Commands";
+import Training from "./components/Training";
 
 // Load modules routes dynamically.
 const requireContext = require.context('../modules', true, /routes\.js$/)
@@ -42,6 +46,26 @@ export const routes = [
                 path: '/map/:canonical',
                 component: Map,
                 name: 'map'
+            },
+            {
+                path: '/interviews',
+                component: Interviews,
+                name: 'interviews'
+            },
+            {
+                path: '/interview/:id',
+                component: Interview,
+                name: 'interview'
+            },
+            {
+                path: '/commands',
+                component: Commands,
+                name: 'commands'
+            },
+            {
+                path: '/training',
+                component: Training,
+                name: 'training'
             },
             {
                 path: '*',

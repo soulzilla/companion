@@ -7,12 +7,12 @@ const page = path => () => import(/* webpackChunkName: '' */ `./components/${pat
 
 export const routes = [
     {
-        path: '/commands',
+        path: '/admin/commands',
         name: 'Commands',
         component: page('CommandList'),
     },
     {
-        path: '/commands/:id',
+        path: '/admin/commands/:id',
         name: 'Show Command',
         component: page('CommandView'),
         hidden: true

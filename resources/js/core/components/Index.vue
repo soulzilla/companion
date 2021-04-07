@@ -90,6 +90,25 @@
             </template>
         </div>
 
+        <div class="row mb-3">
+            <template v-if="loading">
+                <div class="col-md-4 my-3" v-for="i in 3" v-bind:key="'links-' + i">
+                    <b-skeleton type="button" width="100%"></b-skeleton>
+                </div>
+            </template>
+            <template v-else>
+                <!-- <div class="col-md-4 my-3">
+                    <router-link to="/interviews" class="btn btn-block btn-outline-info">Интервью с игроками</router-link>
+                </div> -->
+                <div class="col-md-4 my-3">
+                    <router-link to="/training" class="btn btn-block btn-outline-info">Полезные карты</router-link>
+                </div>
+                <div class="col-md-4 my-3">
+                    <router-link to="/commands" class="btn btn-block btn-outline-info">Полезные команды</router-link>
+                </div>
+            </template>
+        </div>
+
         <div class="banner-bottom">
             <template v-if="loading">
                 <b-skeleton-img height="300px" no-aspect></b-skeleton-img>

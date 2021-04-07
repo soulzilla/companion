@@ -6,9 +6,11 @@ use App\Enums\AdvantageGroupsEnum;
 use App\Enums\AdvantageTypeEnum;
 use App\Models\Advantage;
 use App\Models\Advertisement;
+use App\Models\Command;
 use App\Models\Gallery;
 use App\Models\Map;
 use App\Models\Tip;
+use App\Models\Training;
 use App\Models\Visit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -131,6 +133,28 @@ class MainController extends Controller
             'boosts' => $boosts,
             'tricks' => $tricks,
             'wallbangs' => $wallbangs
+        ]);
+    }
+
+    public function commands()
+    {
+        $commands = Command::query()
+            ->orderBy('weight')->get();
+
+        return response()->json([
+            'data' => $commands,
+            'ads' => $this->getAds(),
+        ]);
+    }
+
+    public function training()
+    {
+        $training = Training::query()
+            ->orderBy('weight')->get();
+
+        return response()->json([
+            'data' => $training,
+            'ads' => $this->getAds()
         ]);
     }
 

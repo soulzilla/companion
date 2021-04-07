@@ -7,12 +7,12 @@ const page = path => () => import(/* webpackChunkName: '' */ `./components/${pat
 
 export const routes = [
     {
-        path: '/advertisements',
+        path: '/admin/advertisements',
         name: 'Advertisements',
         component: page('AdvertisementList'),
     },
     {
-        path: '/advertisements/:id',
+        path: '/admin/advertisements/:id',
         name: 'Show Advertisement',
         component: page('AdvertisementView'),
         hidden: true

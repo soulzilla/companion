@@ -7,14 +7,14 @@ const page = path => () => import(/* webpackChunkName: '' */ `./components/${pat
 
 export const routes = [
     {
-        path: '/admin/trainings',
-        name: 'Trainings',
-        component: page('TrainingList'),
+        path: '/admin/questions',
+        name: 'Questions',
+        component: page('QuestionList'),
     },
     {
-        path: '/admin/trainings/:id',
-        name: 'Show Training',
-        component: page('TrainingView'),
+        path: '/admin/questions/:id',
+        name: 'Show Question',
+        component: page('QuestionView'),
         hidden: true
     }
 ]

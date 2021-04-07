@@ -6,11 +6,14 @@ import router from './bootstrap/router'
 import store from './core/store'
 import globalMixin from './includes/mixins/globalMixin'
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+import VueQuillEditor from 'vue-quill-editor'
 
 import './bootstrap/auth'
 import './bootstrap/moment'
 
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'quill/dist/quill.core.css' // import styles
+import 'quill/dist/quill.snow.css' // for snow theme
 
 try {
     window.Popper = require('popper.js').default
@@ -25,6 +28,7 @@ try {
 Vue.use(ElementUI, {i18n: (key, value) => i18n.t(key, value)})
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
+Vue.use(VueQuillEditor)
 
 Vue.prototype.config = window.config
 
