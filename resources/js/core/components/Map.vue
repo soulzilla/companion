@@ -773,4 +773,8 @@ export default {
     .advantages .advantage:nth-child(1), .advantages .advantage:nth-child(2), .advantages .advantage:nth-child(3){
         display: block;
     }
+
+    .advantage {
+        margin-bottom: 1rem;
+    }
 </style>
